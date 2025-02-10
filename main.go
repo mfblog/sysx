@@ -46,9 +46,17 @@ func createService(name, execStart, workDir string) error {
 		return fmt.Errorf("failed to parse template: %w", err)
 	}
 
+	parsedExecStart := execStart
+	if !filepath.IsAbs(execStart) {
+		parsedExecStart, err = filepath.Abs(parsedExecStart)
+		if err != nil {
+			return fmt.Errorf("failed to get absolute path for execStart: %w", err)
+		}
+	}
+
 	config := ServiceConfig{
 		Description:      name,
-		ExecStart:        filepath.Join(workDir, execStart),
+		ExecStart:        parsedExecStart,
 		WorkingDirectory: workDir,
 	}
 
