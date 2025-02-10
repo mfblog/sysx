@@ -137,10 +137,10 @@ func main() {
 
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(), "Create systemd service with enhanced configuration\n")
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s [options] -- <command> [args...]\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s [options] <command> [args...]\n", os.Args[0])
 		flag.PrintDefaults()
 		fmt.Println("\nExample:")
-		fmt.Println("  sysx -t simple -u nobody -g nogroup -e \"ENV=prod\" -E /etc/myenv -- /path/to/app --arg")
+		fmt.Println("  sysx -t simple -u nobody -g nogroup -e \"ENV=prod\" -E /etc/myenv /path/to/app --arg")
 	}
 
 	flag.Parse()
@@ -174,10 +174,10 @@ func main() {
 
 	execStart := args[0]
 	if !filepath.IsAbs(execStart) {
-		if fullPath, err := exec.LookPath(execStart); err == nil {
-			execStart = fullPath
+		if absPath, err := filepath.Abs(execStart); err == nil {
+			execStart = absPath
 		} else {
-			log.Fatalf("Cannot find executable path: %v", err)
+			log.Fatalf("Error getting absolute path: %v", err)
 		}
 	}
 	if len(args) > 1 {
