@@ -22,6 +22,12 @@ sysx 是一个用 Go 编写的简单的命令行工具，简化了在 Linux 上�
 
 ## 安装
 
+### 安装脚本
+
+```shell
+curl -sSL https://raw.githubusercontent.com/krau/sysx/main/install.sh | sudo bash
+```
+
 ### 从预编译二进制文件安装
 
 1. 在 [releases page](https://github.com/krau/sysx/releases) 下载适合你的系统的最新版本

@@ -22,6 +22,12 @@ sysx is a lightweight command-line tool written in Go that simplifies running co
 
 ## Installation
 
+### Install Script
+
+```shell
+curl -sSL https://raw.githubusercontent.com/krau/sysx/main/install.sh | sudo bash
+```
+
 ### Via Prebuilt Binary
 
 1. Download the latest release from the [releases page](https://github.com/krau/sysx/releases)
