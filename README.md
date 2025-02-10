@@ -1,5 +1,7 @@
 # sysx
 
+**English** / <a href="https://github.com/krau/sysx/blob/main/README_ZHS.md"> 简体中文 </a>
+
 A Simple Command-Line Tool for Running Commands as Systemd Services
 
 ## Overview
@@ -18,7 +20,7 @@ sysx is a lightweight command-line tool written in Go that simplifies running co
 - Linux distribution with systemd
 - Root privileges (sudo) are required to write to system directories and manage services
 
-## Installation:
+## Installation
 
 ### Via Prebuilt Binary
 
