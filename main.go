@@ -11,6 +11,8 @@ import (
 	"text/template"
 )
 
+var Version = "Unknown"
+
 const serviceTemplate = `[Unit]
 Description={{.Description}}
 After=network.target
@@ -76,11 +78,23 @@ var serviceNameReplacer = strings.NewReplacer(" ", "-", "/", "-", "\\", "-")
 
 func main() {
 	serviceNameFlag := flag.String("n", "", "Manually specify the service name")
+	versionFlag := flag.Bool("v", false, "Print version")
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), "Create a systemd service for a command\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s [options] <command> [args...]\n", os.Args[0])
+		flag.PrintDefaults()
+	}
 	flag.Parse()
+
+	if *versionFlag {
+		fmt.Printf("Version: %s\n", Version)
+		return
+	}
 
 	args := flag.Args()
 	if len(args) == 0 {
-		log.Fatalf("Usage: %s [options] <command> [args...]\n", os.Args[0])
+		flag.Usage()
+		return
 	}
 
 	command := strings.Join(args, " ")
