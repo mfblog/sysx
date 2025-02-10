@@ -115,6 +115,7 @@ var serviceNameReplacer = strings.NewReplacer(
 func main() {
 	var (
 		serviceName string
+		workDir     string
 		versionFlag bool
 		serviceType string
 		user        string
@@ -132,6 +133,7 @@ func main() {
 	flag.Var(&envVars, "e", "Set environment variables (can specify multiple)")
 	flag.Var(&envFiles, "E", "Environment files to load (can specify multiple)")
 	flag.BoolVar(&dryRun, "dry", false, "Print service file without creating it")
+	flag.StringVar(&workDir, "w", "", "Working directory")
 
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(), "Create systemd service with enhanced configuration\n")
@@ -162,9 +164,12 @@ func main() {
 	}
 	serviceName = serviceNameReplacer.Replace(serviceName)
 
-	workDir, err := os.Getwd()
-	if err != nil {
-		log.Fatalf("Error getting working directory: %v", err)
+	var err error
+	if workDir == "" {
+		workDir, err = os.Getwd()
+		if err != nil {
+			log.Fatalf("Error getting working directory: %v", err)
+		}
 	}
 
 	execStart := args[0]

@@ -69,3 +69,16 @@ sudo sysx -n mycustomservice python -m http.server
 ```
 
 This will create a service file named "mycustomservice.service" instead of the default.
+
+### Arguments
+
+All arguments are optional.
+
+- -n: Specify a custom service name
+- -t: Service type (simple, forking, oneshot, dbus, notify, idle)
+- -u: User to run the service as
+- -g: Group to run the service as
+- -e: Environment variables to set (e.g., -e "KEY1=value1")
+- -E: Environment file to load
+- -w: Working directory
+- -dry: Print the service that would be generated without taking any actual action

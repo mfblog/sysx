@@ -69,3 +69,16 @@ sudo sysx -n mycustomservice python -m http.server
 ```
 
 这会创建一个名为 "mycustomservice.service" 的服务文件，而不是默认的名字。
+
+### 参数
+
+所有参数都是可选的。
+
+- `-n`：自定义服务名
+- `-t`: 服务类型 (Type=)
+- `-u`: 服务用户 (User=)
+- `-g`: 服务组 (Group=)
+- `-e`: 环境变量 (Environment=)
+- `-E`: 环境文件 (EnvironmentFile=)
+- `-w`: 工作目录 (WorkingDirectory=)
+- `-dry`: 仅打印将会生成的服务, 不做任何实际操作
