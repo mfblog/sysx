@@ -113,6 +113,10 @@ func main() {
 	} else {
 		name = args[0]
 	}
+	if strings.HasPrefix(name, ".") || strings.HasPrefix(name, "/") {
+		name = filepath.Base(name)
+	}
+
 	name = serviceNameReplacer.Replace(name)
 
 	workDir, err := os.Getwd()
