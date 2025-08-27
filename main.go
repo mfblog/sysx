@@ -173,7 +173,7 @@ func main() {
 	}
 
 	execStart := args[0]
-	if strings.HasPrefix(execStart, ".") && !filepath.IsAbs(execStart) {
+	if !filepath.IsAbs(execStart) {
 		if absPath, err := filepath.Abs(execStart); err == nil {
 			execStart = absPath
 		} else {
